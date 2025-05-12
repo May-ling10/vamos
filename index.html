@@ -18,8 +18,20 @@
     }
 
     header h1 {
-      font-size: 2.5rem;
-      color: white;
+    font-size: 2.5rem;
+    color: white;
+    animation: slideIn 1s ease-out;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
 
     .section {
@@ -44,13 +56,18 @@
     }
 
     .media-card {
-      margin: 1rem;
-      border: 2px solid #c084fc;
-      border-radius: 12px;
-      padding: 1rem;
-      background: white;
-      display: inline-block;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.6s ease forwards;
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
+}
+
 
     img, video {
       max-width: 300px;
@@ -71,7 +88,7 @@
 
 #contenedorMedia {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 2rem;
   padding: 1rem;
 }
@@ -107,21 +124,23 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
-  background-color: #f3e8ff; /* fondo lila muy suave */
-  flex-wrap: wrap;
   gap: 2rem;
+  margin: 2rem auto;
+  max-width: 1000px;
+  flex-wrap: wrap;
 }
 
 .intro-img {
-  width: 200px;
-  border-radius: 16px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  max-width: 500px;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
 .intro-text {
   max-width: 500px;
-  text-align: left;
+  font-size: 1.2rem;
+  color: #5a3c8c; /* Lila suave */
+  font-style: italic;
 }
 
 .intro-text h2 {
@@ -132,6 +151,28 @@
   font-size: 1.1rem;
   color: #4c1d95;
 }
+.floating-heart {
+  position: fixed;
+  bottom: -50px;
+  left: 50%;
+  font-size: 2rem;
+  animation: floatUp 6s infinite linear;
+  opacity: 0.5;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  50% {
+    transform: translateX(20px) translateY(-300px);
+  }
+  100% {
+    transform: translateX(-20px) translateY(-600px);
+    opacity: 0;
+  }
+}
+
 
 
   </style>
@@ -139,26 +180,27 @@
 <body>
 
   <header>
-    <h1>💖 ¡Feliz Día Mamá! 💖</h1>
+    <h1>🌷 ¡Feliz Día Mamá! 🌷</h1>
   <div class="intro">
     <img src="foto_mama.jpg" alt="Foto especial" class="intro-img">
     <div class="intro-text">
       <h2>Querida mamá 💜</h2>
       <p>
-      Hoy quiero decirte tantas cosas hermosas... este espacio es para recordarte cuánto te amo
-      y lo agradecida que estoy por todo lo que haces 💐💫
+      Quiero aprovechar esta fecha tan especial para recordarte que eres lo más especial que tenemos en nuestras vidas, eres un ser de luz, una mamá increible y una mujer espetacular.
+      Y que mejor forma que hacerlo por medio de recuerdo visuales que te encantan. Un pequeño cariño desde lo que he aprendido a hacer💐💫
       </p>
     </div>
   </div>
+  
   </header>
 
   <div class="section">
-    <p>Con mucho amor, preparé estas secciones para ti:</p>
-    <button class="button" onclick="mostrarGaleria('videos_creatividad', 'Creatividad de mamá 🎨')">Creatividad</button>
-    <button class="button" onclick="mostrarGaleria('fotos_mami_y_yo', 'Juntas 👩‍👧')">Juntas</button>
-    <button class="button" onclick="mostrarGaleria('videos_especial', 'Videos Especiales 🎥')">Especiales</button>
-    <button class="button" onclick="mostrarGaleria('chismosos', 'Momentos Chistosos 😂')">Chistosos</button>
-    <button class="button" onclick="mostrarGaleria('mamifotos', 'Hermosa')">Tu</button>
+    <p>Con mucho amor, preparé estas secciones para ti, espero con el tiempo las podamos llenar de más recuerdos:</p>
+    <button class="button" onclick="mostrarGaleria('videos_creatividad', 'Creatividad de mamá 🎨')">Creatividad🎨</button>
+    <button class="button" onclick="mostrarGaleria('fotos_mami_y_yo', 'Juntas 👩‍👧')">Juntas👩‍👧</button>
+    <button class="button" onclick="mostrarGaleria('videos_especial', 'Videos Especiales❤️‍🩹 ')">Especiales❤️‍🩹</button>
+    <button class="button" onclick="mostrarGaleria('chismosos', 'Momentos Chistosos 😂')">Chistosos😂</button>
+    <button class="button" onclick="mostrarGaleria('mamifotos', 'Hermosa🦋')">Tu🦋</button>
   </div>
 
   <div class="gallery" id="galeria">
@@ -332,6 +374,9 @@ for (let i = 1; i <= totalArchivos; i++) {
   <div id="contenedorMedia"></div>
   <button class="button" onclick="volver()">Volver</button>
 </div>
+
+<!-- Agrega esto al <body> -->
+<div class="floating-heart">💜</div>
 
 
 </body>
