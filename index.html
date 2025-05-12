@@ -196,9 +196,9 @@
     10: "Amo que seas tan tu",
     11: "Y por tampoco por negarte tu placer de dormir",
     12: "Y por ser caprichildo",
-    13: "Gracias por arriesgarte",
-    14: "Una",
-    15: "Y otra vez",
+    13: "Y otra vez",
+    14: "Gracias por arriesgarte",
+    15: "Una",
     16: "Y ser divertida",
     17: "Y enseñarle a mi papá a ser especial",
 
@@ -219,21 +219,33 @@ function mostrarGaleria(carpeta, titulo) {
   const descripciones = descripcionesPorCarpeta[carpeta] || {};
 
   // Cargar imágenes
-  for (let i = 1; i <= totalArchivos; i++) {
-    const img = new Image();
-    img.src = `${carpeta}/${i}.jpg`;
-    img.onload = () => {
-      const card = document.createElement('div');
-      card.className = 'media-card';
-      card.appendChild(img);
+  // Cargar imágenes con múltiples extensiones
+const extensionesImg = ['jpg', 'JPG', 'jpeg', 'JPEG', 'png'];
 
-      const texto = document.createElement('p');
-      texto.textContent = descripciones[i] || `Imagen ${i}`;
-      card.appendChild(texto);
+for (let i = 1; i <= totalArchivos; i++) {
+  (function (i) {
+    let cargada = false;
 
-      contenedor.appendChild(card);
-    };
-  }
+    for (let ext of extensionesImg) {
+      const img = new Image();
+      img.src = `${carpeta}/${i}.${ext}`;
+      img.onload = () => {
+        if (!cargada) {
+          cargada = true;
+          const card = document.createElement('div');
+          card.className = 'media-card';
+          card.appendChild(img);
+
+          const texto = document.createElement('p');
+          texto.textContent = descripciones[i] || `Imagen ${i}`;
+          card.appendChild(texto);
+
+          contenedor.appendChild(card);
+        }
+      };
+    }
+  })(i);
+}
 
   // Cargar videos
   for (let i = 1; i <= totalArchivos; i++) {
