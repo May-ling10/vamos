@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Feliz Día Mamá</title>
   <style>
     body {
@@ -18,20 +19,8 @@
     }
 
     header h1 {
-    font-size: 2.5rem;
-    color: white;
-    animation: slideIn 1s ease-out;
-    }
-
-    @keyframes slideIn {
-      from {
-        transform: translateY(-100%);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
+      font-size: 2.5rem;
+      color: white;
     }
 
     .section {
@@ -39,7 +28,7 @@
     }
 
     .button {
-      background-color:  #a78bfa;
+      background-color: #a78bfa;
       color: white;
       padding: 1rem 2rem;
       font-size: 1rem;
@@ -56,18 +45,13 @@
     }
 
     .media-card {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeIn 0.6s ease forwards;
-  }
-
-  @keyframes fadeIn {
-    to {
-      opacity: 1;
-      transform: translateY(0);
+      margin: 1rem;
+      border: 2px solid #c084fc;
+      border-radius: 12px;
+      padding: 1rem;
+      background: white;
+      display: inline-block;
     }
-}
-
 
     img, video {
       max-width: 300px;
@@ -80,101 +64,112 @@
     p {
       margin-top: 0.5rem;
     }
-    .gallery {
-  display: none;
-  padding: 2rem;
-  background-color: #fff0f5;
-}
 
-#contenedorMedia {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 2rem;
-  padding: 1rem;
-}
+    #contenedorMedia {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 2rem;
+      padding: 1rem;
+    }
 
-.media-card {
-  background-color: white;
-  border: 2px solid #ffb6c1;
-  border-radius: 16px;
-  padding: 1rem;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  transition: transform 0.2s ease;
-}
+    .media-card {
+      background-color: white;
+      border: 2px solid #ffb6c1;
+      border-radius: 16px;
+      padding: 1rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
+    }
 
-.media-card:hover {
-  transform: scale(1.02);
-}
+    .media-card:hover {
+      transform: scale(1.02);
+    }
 
-.media-card img,
-.media-card video {
-  width: 100%;
-  max-height: 500px; /* <-- aumenta el alto */
-  object-fit: contain; /* <-- muestra todo sin recorte */
-  border-radius: 16px;
-  background-color: #f3e8ff; /* opcional para videos que no llenen el espacio */
-}
-.media-card p {
-  margin-top: 0.5rem;
-  font-size: 1rem;
-  color: #333;
-  font-style: italic;
-}
-.intro {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-  margin: 2rem auto;
-  max-width: 1000px;
-  flex-wrap: wrap;
-}
+    .media-card img,
+    .media-card video {
+      width: 100%;
+      max-height: 500px;
+      object-fit: contain;
+      border-radius: 16px;
+      background-color: #f3e8ff;
+    }
 
-.intro-img {
-  max-width: 500px;
-  border-radius: 20px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
+    .media-card p {
+      margin-top: 0.5rem;
+      font-size: 1rem;
+      color: #333;
+      font-style: italic;
+    }
 
-.intro-text {
-  max-width: 500px;
-  font-size: 1.2rem;
-  color: #5a3c8c; /* Lila suave */
-  font-style: italic;
-}
+    .intro {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      margin: 2rem auto;
+      max-width: 1000px;
+      flex-wrap: wrap;
+    }
 
-.intro-text h2 {
-  color: #6b21a8;
-}
+    .intro-img {
+      max-width: 500px;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
 
-.intro-text p {
-  font-size: 1.1rem;
-  color: #4c1d95;
-}
-.floating-heart {
-  position: fixed;
-  bottom: -50px;
-  left: 50%;
-  font-size: 2rem;
-  animation: floatUp 6s infinite linear;
-  opacity: 0.5;
-}
+    .intro-text {
+      max-width: 500px;
+      font-size: 1.2rem;
+      color: #5a3c8c;
+      font-style: italic;
+    }
 
-@keyframes floatUp {
-  0% {
-    transform: translateX(0) translateY(0);
-  }
-  50% {
-    transform: translateX(20px) translateY(-300px);
-  }
-  100% {
-    transform: translateX(-20px) translateY(-600px);
-    opacity: 0;
-  }
-}
+    .intro-text h2 {
+      color: #6b21a8;
+    }
 
+    .intro-text p {
+      font-size: 1.1rem;
+      color: #4c1d95;
+    }
 
+    /* 🔽 RESPONSIVE para celulares */
+    @media (max-width: 600px) {
+      .intro {
+        flex-direction: column;
+        text-align: center;
+      }
 
+      .intro-img {
+        max-width: 90%;
+        height: auto;
+      }
+
+      .intro-text {
+        max-width: 90%;
+        font-size: 1rem;
+      }
+
+      .media-card img,
+      .media-card video {
+        max-height: 300px;
+      }
+
+      .button {
+        width: 90%;
+        font-size: 1.1rem;
+        padding: 0.8rem;
+      }
+
+      header h1 {
+        font-size: 2rem;
+      }
+
+      #contenedorMedia {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
   </style>
 </head>
 <body>
