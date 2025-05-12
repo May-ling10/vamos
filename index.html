@@ -34,7 +34,7 @@
       border: none;
       border-radius: 12px;
       cursor: pointer;
-      margin-top: 1rem;
+      margin: 1rem;
     }
 
     .gallery {
@@ -43,71 +43,230 @@
       background-color: #fff0f5;
     }
 
-    .video-card {
+    .media-card {
       margin: 1rem;
       border: 2px solid #ffb6c1;
       border-radius: 12px;
       padding: 1rem;
       background: white;
+      display: inline-block;
     }
 
-    video {
-      max-width: 100%;
+    img, video {
+      max-width: 300px;
+      max-height: 200px;
       border-radius: 12px;
+      display: block;
+      margin: auto;
     }
+
+    p {
+      margin-top: 0.5rem;
+    }
+    .gallery {
+  display: none;
+  padding: 2rem;
+  background-color: #fff0f5;
+}
+
+#contenedorMedia {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.media-card {
+  background-color: white;
+  border: 2px solid #ffb6c1;
+  border-radius: 16px;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.media-card:hover {
+  transform: scale(1.02);
+}
+
+.media-card img,
+.media-card video {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.media-card p {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: #333;
+  font-style: italic;
+}
+
   </style>
 </head>
 <body>
 
   <header>
-    <h1>Feliz Día Mamá</h1>
+    <h1>💖 ¡Feliz Día Mamá! 💖</h1>
   </header>
 
   <div class="section">
-    <p>Con mucho amor, preparé algo especial para ti.</p>
-    <button class="button" onclick="mostrarGaleria()">Ver tu creatividad ✨</button>
+    <p>Con mucho amor, preparé estas secciones para ti:</p>
+    <button class="button" onclick="mostrarGaleria('videos_creatividad', 'Creatividad de mamá 🎨')">Creatividad</button>
+    <button class="button" onclick="mostrarGaleria('fotos_mami_y_yo', 'Juntas 👩‍👧')">Juntas</button>
+    <button class="button" onclick="mostrarGaleria('videos_especial', 'Videos Especiales 🎥')">Especiales</button>
+    <button class="button" onclick="mostrarGaleria('chismosos', 'Momentos Chistosos 😂')">Chistosos</button>
+    <button class="button" onclick="mostrarGaleria('fotos_mami', 'Fotos mami 📸')">Fotos mami</button>
   </div>
 
-  <div class="gallery" id="galeriaVideos">
-    <h2>La creatividad de mi mamá 🎨</h2>
-    <div id="contenedorVideos"></div>
+  <div class="gallery" id="galeria">
+    <h2 id="tituloGaleria">Galería</h2>
+    <div id="contenedorMedia"></div>
     <button class="button" onclick="volver()">Volver</button>
   </div>
 
-  <script>
-    const videos = [
-      { archivo: '1.mp4', descripcion: '¡Mamá haciendo magia en casa!' },
-      { archivo: '2.mp4', descripcion: 'Tu creatividad es infinita ✨' },
-      { archivo: '3.mp4', descripcion: 'Recuerdos inolvidables 🎥' }
-    ];
+ <script>
+  const totalArchivos = 20; // cámbialo según cuántos archivos numerados tengas
 
-    function mostrarGaleria() {
-      document.querySelector('.section').style.display = 'none';
-      const galeria = document.getElementById('galeriaVideos');
-      const contenedor = document.getElementById('contenedorVideos');
-      contenedor.innerHTML = '';
+  const descripcionesPorCarpeta = {
+  videos_creatividad: {
+    2: "Gracias por ser tan creativa con las sensaciones que causa la comida",
+    3: "Y esos disfraces y maquillajes, uff los mejores!",
+    4: "Picasso te queda en pañales",
+    5: "Más disfraces creativos",
+    8: "Y todas las mascarilas ¡Que nos encantan!(como mi cara de emoción)",
+    1: "Por nunca bararse en nada y buscar una solución",
+    6: "Y enseñarme a cocinar como tu",
+    7: "Más maquillajes mega artísticos",
+    10: "Ese ya no eran tan loco",
+    12: "Gracias por hacernos tortas tan hermosas",
+    11: "Y por dejar volar tu creatividad con el chocolate",
+    15: "Y ser 'cero expresiva' ",
+    13: "Los mejores disfraces de tu historial AJAJJA",
+    14: "Y ser creativa en absolutamente todo",
+  },
+  fotos_mami_y_yo: {
+    1: "Yo creo que nunca pensaste a la lokis que te iba a salir",
+    2: "🏡",
+    3: "Somos muy dindos🌈",
+    4: "Te amo",
+    5: "Yo me acuerdo tanto de ese cumpleaños, gracias por hacerlos tan especiales",
+    6: "💌",
+    7: "Acá estabamos tragando polvo de la remodelación jajaa",
+    8: "👥",
+    9: "Déjame abrazarte siempre",
+    10: "❤️"
+  },
+  videos_especial: {
+    1: "Gracias por tomar a mi papá de la mano",
+    2: "Familia",
+    3: "Gracias por hacernos sentir especiales a todos",
+    4: "Cartagena primera vez",
+    5: "Somos una familia muy hermosa",
+    6: "Gracias por contruir un hogar",
+    7: "Y nunca dejar de amar",
+    8: "Y trabajar muyyyyy duro jjajaja",
+    9: "Gracias por enseñarnos el valor de la familia",
+    10: "Y por seguirnos nuestras ideas locas",
+    11: "Criaste 3 mujeres muy hermosas y fuertes",
+    12: "Así como ustedes nos llevan a lugares hermosos, nosotras también los llevaremos",
+    13: "Gracias por hacer parte a mi abuela",
+    14: "Más lugares hermosos en familia",
+    15: "Gracias por estar en nuestros logros",
+    16: "Y siga chupando mango",
+    17: "Gracias por hacer esta familia un bello hogar",
+    18: "Y por llevarnos a bailar JAJAJA",
+    19: "Y cuidar de estas 4 almitas de Dios",
+    20: "Por conectar conmigo desde el día 1",
+    21: "Gracias por estar en mis primeros pasos y risas",
+    22: "Y gracias por entregarte a tu trabajo como si fuera tu vida",
+  },
+   chismosos: {
+    1: "El grupo: tengo hambre-->yo también",
+    2: "Gracias por intentar mediar nuestros malos entendidos",
+    3: "Y por ser tan paciente con 3 angelitos de Dios",
+    4: "Y venir a almorzar corriendoo",
+    5: "Perdón por hacerte pasar tantos vómitos",
+    6: "Perdón x2 JAJAJA",
+    7: "Porque quedabas toda cansadas y nosotras ya bien",
+    8: "Gracias por nunca negarme la comida JAJAJA",
+    9: "Y tu por nunca negarte comer delicioso",
+    10: "Amo que seas tan tu",
+    11: "Y por tampoco por negarte tu placer de dormir",
+    12: "Y por ser caprichildo",
+    13: "Gracias por arriesgarte",
+    14: "Una",
+    15: "Y otra vez",
+    16: "Y ser divertida",
+    17: "Y enseñarle a mi papá a ser especial",
 
-      videos.forEach(video => {
-        const card = document.createElement('div');
-        card.className = 'video-card';
-        card.innerHTML = `
-          <video controls>
-            <source src="Videos_creatividad/${video.archivo}" type="video/mp4">
-            Tu navegador no puede mostrar este video.
-          </video>
-          <p>${video.descripcion}</p>
-        `;
-        contenedor.appendChild(card);
-      });
+  },
+   fotos_mami: {
+    1: "Yo creo que nunca pensaste a la lokis que te iba a salir"
+  },
+};
+function mostrarGaleria(carpeta, titulo) {
+  document.querySelector('.section').style.display = 'none';
+  const galeria = document.getElementById('galeria');
+  const contenedor = document.getElementById('contenedorMedia');
+  const tituloGaleria = document.getElementById('tituloGaleria');
 
-      galeria.style.display = 'block';
-    }
+  contenedor.innerHTML = '';
+  tituloGaleria.textContent = titulo;
 
-    function volver() {
-      document.querySelector('.section').style.display = 'block';
-      document.getElementById('galeriaVideos').style.display = 'none';
-    }
-  </script>
+  const descripciones = descripcionesPorCarpeta[carpeta] || {};
+
+  // Cargar imágenes
+  for (let i = 1; i <= totalArchivos; i++) {
+    const img = new Image();
+    img.src = `${carpeta}/${i}.jpg`;
+    img.onload = () => {
+      const card = document.createElement('div');
+      card.className = 'media-card';
+      card.appendChild(img);
+
+      const texto = document.createElement('p');
+      texto.textContent = descripciones[i] || `Imagen ${i}`;
+      card.appendChild(texto);
+
+      contenedor.appendChild(card);
+    };
+  }
+
+  // Cargar videos
+  for (let i = 1; i <= totalArchivos; i++) {
+    const video = document.createElement('video');
+    video.src = `${carpeta}/${i}.mp4`;
+    video.controls = true;
+    video.onloadeddata = () => {
+      const card = document.createElement('div');
+      card.className = 'media-card';
+      card.appendChild(video);
+
+      const texto = document.createElement('p');
+      texto.textContent = descripciones[i] || `Video ${i}`;
+      card.appendChild(texto);
+
+      contenedor.appendChild(card);
+    };
+  }
+
+  galeria.style.display = 'block';
+}
+
+  function volver() {
+    document.querySelector('.section').style.display = 'block';
+    document.getElementById('galeria').style.display = 'none';
+  }
+</script>
+<div class="gallery" id="galeria">
+  <h2 id="tituloGaleria"></h2>
+  <div id="contenedorMedia"></div>
+  <button class="button" onclick="volver()">Volver</button>
+</div>
+
 
 </body>
 </html>
