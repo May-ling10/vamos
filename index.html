@@ -6,14 +6,14 @@
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background-color: #fff8f0;
+      background-color: #fdf4ff;
       margin: 0;
       padding: 0;
       text-align: center;
     }
 
     header {
-      background-color: #ffb6c1;
+      background-color: #d8b4fe;
       padding: 2rem;
     }
 
@@ -27,7 +27,7 @@
     }
 
     .button {
-      background-color: #ff69b4;
+      background-color:  #a78bfa;
       color: white;
       padding: 1rem 2rem;
       font-size: 1rem;
@@ -45,7 +45,7 @@
 
     .media-card {
       margin: 1rem;
-      border: 2px solid #ffb6c1;
+      border: 2px solid #c084fc;
       border-radius: 12px;
       padding: 1rem;
       background: white;
@@ -92,17 +92,47 @@
 .media-card img,
 .media-card video {
   width: 100%;
-  max-height: 300px;
-  object-fit: cover;
-  border-radius: 12px;
+  max-height: 500px; /* <-- aumenta el alto */
+  object-fit: contain; /* <-- muestra todo sin recorte */
+  border-radius: 16px;
+  background-color: #f3e8ff; /* opcional para videos que no llenen el espacio */
 }
-
 .media-card p {
   margin-top: 0.5rem;
   font-size: 1rem;
   color: #333;
   font-style: italic;
 }
+.intro {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background-color: #f3e8ff; /* fondo lila muy suave */
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.intro-img {
+  width: 200px;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.intro-text {
+  max-width: 500px;
+  text-align: left;
+}
+
+.intro-text h2 {
+  color: #6b21a8;
+}
+
+.intro-text p {
+  font-size: 1.1rem;
+  color: #4c1d95;
+}
+
 
   </style>
 </head>
@@ -110,6 +140,16 @@
 
   <header>
     <h1>💖 ¡Feliz Día Mamá! 💖</h1>
+  <div class="intro">
+    <img src="foto_mama.jpg" alt="Foto especial" class="intro-img">
+    <div class="intro-text">
+      <h2>Querida mamá 💜</h2>
+      <p>
+      Hoy quiero decirte tantas cosas hermosas... este espacio es para recordarte cuánto te amo
+      y lo agradecida que estoy por todo lo que haces 💐💫
+      </p>
+    </div>
+  </div>
   </header>
 
   <div class="section">
@@ -128,7 +168,7 @@
   </div>
 
  <script>
-  const totalArchivos = 20; // cámbialo según cuántos archivos numerados tengas
+  const totalArchivos = 25; // cámbialo según cuántos archivos numerados tengas
 
   const descripcionesPorCarpeta = {
   videos_creatividad: {
@@ -157,7 +197,9 @@
     7: "Acá estabamos tragando polvo de la remodelación jajaa",
     8: "👥",
     9: "Déjame abrazarte siempre",
-    10: "❤️"
+    10: "❤️",
+    11: "Gracias por acompañarme en todo",
+    12: "Y echar chismesito conmigo"
   },
   videos_especial: {
     1: "Gracias por tomar a mi papá de la mano",
@@ -175,13 +217,15 @@
     13: "Gracias por hacer parte a mi abuela",
     14: "Más lugares hermosos en familia",
     15: "Gracias por estar en nuestros logros",
-    16: "Y siga chupando mango",
-    17: "Gracias por hacer esta familia un bello hogar",
-    18: "Y por llevarnos a bailar JAJAJA",
-    19: "Y cuidar de estas 4 almitas de Dios",
-    20: "Por conectar conmigo desde el día 1",
-    21: "Gracias por estar en mis primeros pasos y risas",
-    22: "Y gracias por entregarte a tu trabajo como si fuera tu vida",
+    16: "Te amamos muchísimo",
+    17: "🙈",
+    18: "Y siga chupando mango",
+    19: "Gracias por estar en mis primeros pasos y risas",
+    20: "Y por conectar conmigo desde el día 1",
+    21: "Y cuidar de estas 4 almitas de Dios",
+    22: "Por llevarnos a bailar",
+    23: "Por hacer una familia increible",
+    24: "Y gracias por entregarte a tu trabajo como si fuera tu vida",
   },
    chismosos: {
     1: "El grupo: tengo hambre-->yo también",
@@ -196,22 +240,23 @@
     10: "Amo que seas tan tu",
     11: "Y por tampoco por negarte tu placer de dormir",
     12: "Y por ser caprichildo",
-    13: "Y otra vez",
+    13: "Rico",
     14: "Gracias por arriesgarte",
     15: "Una",
     16: "Y ser divertida",
     17: "Y enseñarle a mi papá a ser especial",
+    18: "Por ser tan fresca"
 
   },
    mamifotos: {
     1: "Muy hermosa mi mami",
-    2: "",
+    2: "😍",
     3: "El peinado de banda",
     4: "Miren a mapachildo",
     5: "Muy creido",
-    6: "",
+    6: "💘",
     7: "Nunca dejes de sonreir",
-    8: "",
+    8: "🐈",
     9: "Ni de cocinar jajajaja",
     10: "Ni de ser feliz",
   }
