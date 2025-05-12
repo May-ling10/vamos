@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Feliz Día Mamá</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff8f0;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    header {
+      background-color: #ffb6c1;
+      padding: 2rem;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      color: white;
+    }
+
+    .section {
+      margin: 2rem;
+    }
+
+    .button {
+      background-color: #ff69b4;
+      color: white;
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+
+    .gallery {
+      display: none;
+      padding: 2rem;
+      background-color: #fff0f5;
+    }
+
+    .video-card {
+      margin: 1rem;
+      border: 2px solid #ffb6c1;
+      border-radius: 12px;
+      padding: 1rem;
+      background: white;
+    }
+
+    video {
+      max-width: 100%;
+      border-radius: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Feliz Día Mamá</h1>
+  </header>
+
+  <div class="section">
+    <p>Con mucho amor, preparé algo especial para ti.</p>
+    <button class="button" onclick="mostrarGaleria()">Ver tu creatividad ✨</button>
+  </div>
+
+  <div class="gallery" id="galeriaVideos">
+    <h2>La creatividad de mi mamá 🎨</h2>
+    <div id="contenedorVideos"></div>
+    <button class="button" onclick="volver()">Volver</button>
+  </div>
+
+  <script>
+    const videos = [
+      { archivo: '1.mp4', descripcion: '¡Mamá haciendo magia en casa!' },
+      { archivo: '2.mp4', descripcion: 'Tu creatividad es infinita ✨' },
+      { archivo: '3.mp4', descripcion: 'Recuerdos inolvidables 🎥' }
+    ];
+
+    function mostrarGaleria() {
+      document.querySelector('.section').style.display = 'none';
+      const galeria = document.getElementById('galeriaVideos');
+      const contenedor = document.getElementById('contenedorVideos');
+      contenedor.innerHTML = '';
+
+      videos.forEach(video => {
+        const card = document.createElement('div');
+        card.className = 'video-card';
+        card.innerHTML = `
+          <video controls>
+            <source src="Videos_creatividad/${video.archivo}" type="video/mp4">
+            Tu navegador no puede mostrar este video.
+          </video>
+          <p>${video.descripcion}</p>
+        `;
+        contenedor.appendChild(card);
+      });
+
+      galeria.style.display = 'block';
+    }
+
+    function volver() {
+      document.querySelector('.section').style.display = 'block';
+      document.getElementById('galeriaVideos').style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>
